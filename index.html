@@ -1,0 +1,692 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lmaoja</title>
+    <link rel="stylesheet" href="
+https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css
+">
+    <style>
+        :root {
+            --primary-dark: #121212;
+            --secondary-dark: #1e1e1e;
+            --accent-dark: #ffcc00;
+            --text-light: #ffffff;
+            --text-secondary: #cccccc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            position: relative;
+            height: 60vh;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.8) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            z-index: 10;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-dark);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-toggle {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            z-index: 10;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: var(--secondary-dark);
+            transition: right 0.3s ease;
+            z-index: 15;
+            padding-top: 80px;
+        }
+
+        nav.active/ {
+            right: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav li {
+            margin: 15px 0;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            display: block;
+            padding: 12px 25px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--accent-dark);
+            font-size: 32px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* About Section */
+        .about-section {
+            background: var(--secondary-dark);
+            padding: 50px 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            margin-bottom: 40px;
+        }
+
+        .team-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team-member {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .member-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid var(--accent-dark);
+        }
+
+        /* Products Section */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .product-card {
+            background: var(--secondary-dark);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--accent-dark);
+        }
+
+        .product-price {
+            font-size: 22px;
+            color: var(--accent-dark);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .buy-button {
+            background: var(--accent-dark);
+            color: var(--primary-dark);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+            width: 100%;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .buy-button:hover {
+            background: #e6b800;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: var(--secondary-dark);
+            padding: 50px 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            margin-bottom: 40px;
+        }
+
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .step {
+            text-align: center;
+            flex: 1;
+            min-width: 180px;
+            padding: 20px;
+        }
+
+        .step-icon {
+            font-size: 48px;
+            color: var(--accent-dark);
+            margin-bottom: 15px;
+        }
+
+        /* Buy Page Section */
+        .buy-page {
+            background: var(--secondary-dark);
+            padding: 50px 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            margin-bottom: 40px;
+        }
+
+        .buy-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .buy-option {
+            background: var(--primary-dark);
+            border-radius: 10px;
+            padding: 30px;
+            flex: 1;
+            min-width: 250px;
+            max-width: 350px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .buy-option:hover {
+            transform: translateY(-5px);
+        }
+
+        .option-title {
+            font-size: 24px;
+            color: var(--accent-dark);
+            margin-bottom: 20px;
+        }
+
+        .option-description {
+            margin-bottom: 25px;
+            color: var(--text-secondary);
+        }
+
+        .option-price {
+            font-size: 28px;
+            color: var(--accent-dark);
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .option-button {
+            background: var(--accent-dark);
+            color: var(--primary-dark);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s ease;
+            width: 100%;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .option-button:hover {
+            background: #e6b800;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--secondary-dark);
+            padding: 50px 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            font-size: 16px;
+            background: var(--primary-dark);
+            color: var(--text-light);
+        }
+
+        .submit-btn {
+            background: var(--accent-dark);
+            color: var(--primary-dark);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s ease;
+            width: 100%;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .submit-btn:hover {
+            background: #e6b800;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-dark);
+            color: var(--text-secondary);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-dark);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .social-icon {
+            color: var(--text-secondary);
+            font-size: 24px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            color: var(--accent-dark);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-image {
+                height: 50vh;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .team-info {
+                flex-direction: column;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .steps {
+                flex-direction: column;
+            }
+            
+            .buy-options {
+                flex-direction: column;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .products-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <img src="
+https://images.pexels.com/photos/1458036/pexels-photo-1458036.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1
+" alt="Pessoas em pé perto da costa" class="hero-image">
+        <div class="overlay">
+            <div>
+                <h1>Lmaoja</h1>
+                <p>Moda Carioca</p>
+            </div>
+        </div>
+        
+        <div class="logo">
+            <h1>Lmaoja</h1>
+        </div>
+        
+        <button class="nav-toggle" onclick="toggleNav()">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <nav id="main-nav">
+            <ul>
+                <li><a href="#home">Início</a></li>
+                <li><a href="#about">Sobre Nós</a></li>
+                <li><a href="#products">Produtos</a></li>
+                <li><a href="#buy">Compre Agora</a></li>
+                <li><a href="#how-it-works">Como Funciona</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <h2 class="section-title">Nossa Equipe</h2>
+            <div class="team-info">
+                <div class="team-member">
+                    <img src="
+https://via.placeholder.com/150x150/555555/FFFFFF?text=Fundadora
+" alt="Fundadora" class="member-photo">
+                    <h3>Fundadora</h3>
+                    <p>Criadora e Diretora Criativa</p>
+                </div>
+                <div class="team-member">
+                    <img src="
+https://via.placeholder.com/150x150/555555/FFFFFF?text=Designer
+" alt="Designer" class="member-photo">
+                    <h3>Designer Principal</h3>
+                    <p>Especialista em Moda</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150x150/555555/FFFFFF?text=Operações" alt="Operações" class="member-photo">
+                    <h3>Coordenadora de Operações</h3>
+                    <p>Responsável pelo Processo de Dropshipping</p>
+                </div>
+                <div class="team-member">
+                    <img src="
+https://via.placeholder.com/150x150/555555/FFFFFF?text=Marketing
+" alt="Marketing" class="member-photo">
+                    <h3>Especialista em Marketing Digital</h3>
+                    <p>Responsável pela Estratégia Online</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products">
+            <h2 class="section-title">Nossos Produtos</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/400x300/333333/FFFFFF?text=Camiseta+Básica" alt="Camiseta Básica" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">Camiseta Básica</h3>
+                        <div class="product-price">R$ 49,90</div>
+                        <button class="buy-button">Comprar Agora</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/400x300/333333/FFFFFF?text=Bermuda+Clássica" alt="Bermuda Clássica" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">Bermuda Clássica</h3>
+                        <div class="product-price">R$ 69,90</div>
+                        <button class="buy-button">Comprar Agora</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="
+https://via.placeholder.com/400x300/333333/FFFFFF?text=Vestido+Casual
+" alt="Vestido Casual" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">Vestido Casual</h3>
+                        <div class="product-price">R$ 99,90</div>
+                        <button class="buy-button">Comprar Agora</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="
+https://via.placeholder.com/400x300/333333/FFFFFF?text=Jaqueta+Leve
+" alt="Jaqueta Leve" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">Jaqueta Leve</h3>
+                        <div class="product-price">R$ 129,90</div>
+                        <button class="buy-button">Comprar Agora</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buy Page Section -->
+        <section id="buy" class="buy-page">
+            <h2 class="section-title">Compre Agora</h2>
+            <div class="buy-options">
+                <div class="buy-option">
+                    <div class="option-title">Opção Básica</div>
+                    <div class="option-description">Acesso à nossa plataforma básica com preços competitivos e suporte padrão.</div>
+                    <div class="option-price">Grátis</div>
+                    <button class="option-button">Começar Grátis</button>
+                </div>
+                <div class="buy-option">
+                    <div class="option-title">Plano Premium</div>
+                    <div class="option-description">Acesso completo ao catálogo, ferramentas avançadas e suporte prioritário.</div>
+                    <div class="option-price">R$ 29,90/mês</div>
+                    <button class="option-button">Assinar Agora</button>
+                </div>
+                <div class="buy-option">
+                    <div class="option-title">Plano Empresarial</div>
+                    <div class="option-description">Solução completa para negócios, integrações avançadas e consultoria personalizada.</div>
+                    <div class="option-price">R$ 99,90/mês</div>
+                    <button class="option-button">Contratar Agora</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="how-it-works">
+            <h2 class="section-title">Como Funciona o Dropshipping</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon"><i class="fas fa-search"></i></div>
+                    <h3>Escolha seu Produto</h3>
+                    <p>Navegue por nosso catálogo e escolha os produtos que deseja vender.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon"><i class="fas fa-shopping-cart"></i></div>
+                    <h3>Adicione ao Carrinho</h3>
+                    <p>Adicione os produtos desejados ao carrinho e prossiga para checkout.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon"><i class="fas fa-truck"></i></div>
+                    <h3>Nós Enviamos Direto</h3>
+                    <p>Nós cuidamos do estoque e enviamos diretamente para seus clientes.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <h3>Gere Lucro</h3>
+                    <p>Venda com margem de lucro e receba o pagamento direto na sua conta.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <h2 class="section-title">Entre em Contato</h2>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Nome:</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensagem:</label>
+                        <textarea id="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Enviar Mensagem</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#">Política de Privacidade</a>
+            <a href="#">Termos de Serviço</a>
+            <a href="#">Quem Somos</a>
+            <a href="#">FAQ</a>
+        </div>
+        <div class="social-icons">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2023 Lmaoja. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function toggleNav() {
+            const nav = document.getElementById('main-nav');
+            nav.classList.toggle('active');
+        }
+
+        // Close nav when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('main-nav');
+            const toggle = document.querySelector('.nav-toggle');
+            
+            if (!nav.contains(event.target/) && !toggle.contains(event.target/)) {
+                nav.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
